@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50vh;
+      }
+      main {
+        min-width: 500px;
+        background-color: rgb(228, 163, 23);
+        border-radius: 10px;
+        padding: 40px;
+      }
+      section {
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        gap: 10px;
+        color: rgb(55, 52, 52);
+        background-color: bisque;
+        border-radius: 10px;
+      }
+      h1 {
+        font-size: 3rem;
+        font-weight: 400;
+      }
+      p {
+        text-transform: uppercase;
+        font-size: 0.7rem;
+      }
+      div {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <div class="day">
+          <h1></h1>
+          <p>Day</p>
+        </div>
+        <div class="hour">
+          <h1></h1>
+          <p>Hour</p>
+        </div>
+        <div>
+          <h1>:</h1>
+          <p></p>
+        </div>
+        <div class="minute">
+          <h1></h1>
+          <p>Minutes</p>
+        </div>
+        <div>
+          <h1>:</h1>
+          <p></p>
+        </div>
+        <div class="second">
+          <h1></h1>
+          <p>Seconds</p>
+        </div>
+        <div class="period">
+          <h1></h1>
+          <p>Period</p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      let monate = [
+        "Januar",
+        "Februar",
+        "März",
+        "April",
+        "Mai",
+        "Juni",
+        "Juli",
+        "August",
+        "September",
+        "Oktober",
+        "November",
+        "Dezember",
+      ];
+
+      let wochenTag = [
+        "Sonntag",
+        "Montag",
+        "Dienstag",
+        "Mittwoch",
+        "Donnerstag",
+        "Freitag",
+        "Samstag",
+      ];
+
+      let datum = new Date();
+      console.log(datum.getFullYear());
+      console.log(`${datum.getMonth()} Monat`);
+      console.log(`${datum.getDate()} Tage `);
+      console.log(`${datum.getHours()} Stunde `);
+      console.log(`${datum.getMinutes()} Minute `);
+      console.log(wochenTag[datum.getDate()]);
+      console.log(monate[datum.getMonth()]);
+
+      console.log(
+        `${datum.toDateString().slice(0, 4)} ${datum.toLocaleTimeString()}`
+      );
+
+      let day = document.querySelector(".day h1");
+      let hour = document.querySelector(".hour h1");
+      let minute = document.querySelector(".minute h1");
+      let second = document.querySelector(".second h1");
+      let period = document.querySelector(".period h1");
+      let wecker = () => {
+        let datum = new Date();
+        day.innerHTML = datum.toDateString().slice(0, 4);
+
+        if (datum.getHours() < 10) {
+          hour.innerHTML = `0${datum.getHours()}`;
+        } else {
+          hour.innerHTML = datum.getHours();
+        }
+        if (datum.getMinutes() < 10) {
+          minute.innerHTML = `0${datum.getMinutes()}`;
+        } else {
+          minute.innerHTML = datum.getMinutes();
+        }
+        if (datum.getSeconds() < 10) {
+          second.innerHTML = `0${datum.getSeconds()}`;
+        } else {
+          second.innerHTML = datum.getSeconds();
+        }
+        if (datum.getHours >= 12) {
+          period.innerHTML = "PM";
+        } else {
+          period.innerHTML = "AM";
+        }
+      };
+      setInterval(wecker, 1000);
+    </script>
+  </body>
+</html>
